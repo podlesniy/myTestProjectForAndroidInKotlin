@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">SecondOnKotlin</string>
+    <string-array name="with">
+        <item>Километр</item>
+        <item>Метр</item>
+        <item>Миля</item>
+    </string-array>
+
+    <string-array name="before">
+        <item>Километр</item>
+        <item>Метр</item>
+        <item>Миля</item>
+    </string-array>
+</resources>

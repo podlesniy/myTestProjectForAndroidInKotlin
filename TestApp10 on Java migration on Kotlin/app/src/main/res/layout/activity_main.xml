@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/container"
+    tools:context="com.example.testapp10.MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="1. Используя API сервиса приватБанка создать приложение с одним экраном. На экране должен быть список всех валют с названием валюты и его курсом НБУ.
+\n1.1 Дополнить приложение ещё одним экраном, который будет открываться при клике на любой элемент списка валют. На втором экране должна отображаться полная инфа о валюте (название, курс НБУ, курсы покупки/продажи приватБанка).
+\n1.2* Дополнить приложение текстовым полем (EditText) и кнопкой (Button). В текстовое поле необходимо ввести любую дату, по нажатию на кнопку отобразить список валют с курсами на введенную дату пользователем. "/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <EditText
+            android:id="@+id/enter_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="dd.mm.yyyy"/>
+
+        <Button
+            android:id="@+id/ok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OK"/>
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/item"/>
+
+</LinearLayout>

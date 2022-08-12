@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1. Создать приложение с одним экраном. Приложение позволяет конвертировать величины из одной единицы измерения в другую (например метры в мили, дюймы в футы и т.д.). Набор величин для конвертации - на ваше усмотрение. Интерфейс должен содержать поле для ввода числа, поле для вывода конвертированного значения и 2 элемента для выбора единиц измерения (с какой конвертим и в какую конвертим). Элемента для выбора единиц измерения - на ваше усмотрение (можно посмотреть в сторону NumberPicker, RadioButtons или Spinner например)." />
+
+    <EditText
+        android:id="@+id/edit_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:inputType="numberDecimal"
+        android:hint="Введите число"/>
+
+    <TextView
+        android:id="@+id/text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="200dp"
+        android:text="0"
+        android:textSize="30dp" />
+
+    <Spinner
+        android:id="@+id/spinner1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="250dp"
+        android:entries="@array/with" />
+
+    <Spinner
+        android:id="@+id/spinner2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="250dp"
+        android:layout_marginStart="150dp"
+        android:entries="@array/before"/>
+
+</FrameLayout>
