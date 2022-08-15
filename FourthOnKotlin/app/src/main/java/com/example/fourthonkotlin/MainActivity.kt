@@ -9,12 +9,12 @@ import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
 
-    private var kolProduct = 4
-    private var randomKol: Int = 0
     private lateinit var binding: ActivityMainBinding
     private lateinit var productAdapter: ProductAdapter
     private val rand = Random(System.nanoTime())
-
+    private val startKolProduct = (1..7).random(rand)
+    private var randomKol: Int = 0
+    private var kolProduct: Int = startKolProduct
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,34 +24,46 @@ class MainActivity : AppCompatActivity() {
         productAdapter = ProductAdapter(ArrayList())
         binding.kol.text = kolProduct.toString()
         binding.list.adapter = productAdapter
+        binding.kol0.text = startKolProduct.toString()
+        binding.kol1.text = (startKolProduct * 4).toString()
 
         GlobalScope.launch {
             while (kolProduct >= 0) {
-                delay((500..5000).random(rand).toLong())
-                if (kolProduct in (1..15)) {
-                    randomKol = (1..7).random(rand)
-                    kolProduct += randomKol
-                    withContext(Dispatchers.Main) {
-                        productAdapter.addToJournal(("Поставка: $randomKol товара(ов)"))
-                        binding.kol.text = kolProduct.toString()
-                    }
-                }
+                byuAndSupply(1)
             }
         }
 
         GlobalScope.launch {
             while (kolProduct >= 0) {
-                delay((500..5000).random(rand).toLong())
-                if (kolProduct in (1..15)) {
-                    randomKol = (1..7).random(rand)
-                    kolProduct -= randomKol
-                    withContext(Dispatchers.Main) {
+                byuAndSupply(2)
+            }
+        }
+    }
+
+    private fun byuAndSupply (num: Int) {
+        runBlocking {
+            delay((500..5000).random(rand).toLong())
+            if (kolProduct in (1..(startKolProduct * 4))) {
+                randomKol = (1..7).random(rand)
+                withContext(Dispatchers.Main) {
+                    if (num == 1) {
+                        productAdapter.addToJournal(("Поставка: $randomKol товара(ов)"))
+                        kolProduct += randomKol
+                    } else {
                         productAdapter.addToJournal(("Покупка: $randomKol товара(ов)"))
-                        binding.kol.text = kolProduct.toString()
+                        kolProduct -= randomKol
                     }
+                    binding.kol.text = kolProduct.toString()
+                }
+            } else if (kolProduct > (startKolProduct * 4)) {
+                withContext(Dispatchers.Main) {
+                    binding.kol.text = "Перебор"
+                }
+            } else if (kolProduct <= 0) {
+                withContext(Dispatchers.Main) {
+                    binding.kol.text = "Закончился"
                 }
             }
         }
     }
 }
-
