@@ -57,11 +57,11 @@ class MainActivity : AppCompatActivity() {
                 }
             } else if (kolProduct > (startKolProduct * 4)) {
                 withContext(Dispatchers.Main) {
-                    binding.kol.text = "Перебор"
+                    binding.kol.text = "Закончилось место"
                 }
             } else if (kolProduct <= 0) {
                 withContext(Dispatchers.Main) {
-                    binding.kol.text = "Закончился"
+                    binding.kol.text = "Закончился товар"
                 }
             }
         }
