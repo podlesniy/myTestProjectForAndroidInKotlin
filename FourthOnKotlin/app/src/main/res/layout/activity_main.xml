@@ -1,87 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
     android:padding="16dp"
     tools:context=".MainActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="2*. Создать приложение Магазин. На экране отображается кол-во доступных товаров (TextView, просто число) и дневник оборота товаров (TextView). Поставщик (короутина) раз в N времени поставляет некоторое кол-во товаров в магазин. Покупатель (короутина) раз в M времени покупает некоторое кол-во товаров в магазине. Каждое событие (поставка товара или покупка) должна отображаться в дневнике магазина. Магазин работает до тех пор, пока товары есть в наличии, либо товаров стало в 4 раза больше стартового значения. Для случайных значений (товаров/времени) используйте класс Random."/>
+        android:text="2*. Создать приложение Магазин. На экране отображается кол-во доступных товаров (TextView, просто число) и дневник оборота товаров (TextView). Поставщик (короутина) раз в N времени поставляет некоторое кол-во товаров в магазин. Покупатель (короутина) раз в M времени покупает некоторое кол-во товаров в магазине. Каждое событие (поставка товара или покупка) должна отображаться в дневнике магазина. Магазин работает до тех пор, пока товары есть в наличии, либо товаров стало в 4 раза больше стартового значения. Для случайных значений (товаров/времени) используйте класс Random." />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:text="Магазин"
+        android:layout_gravity="center"
         android:textColor="@color/black"
-        android:textSize="24sp"
-        android:layout_gravity="top|center"
-        android:layout_marginTop="200dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="235dp"
-        android:text="Количество товаров:"
         android:textSize="24sp" />
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Начальное значение:"
-        android:textSize="24sp"
-        android:layout_marginTop="270dp"/>
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Количество товаров:"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/kol"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="10dp"
+                android:text=""
+                android:textSize="24sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Начальное значение:"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/kol0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                android:text=""
+                android:textSize="24sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Максимальное значение:"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/kol1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="8dp"
+                android:text=""
+                android:textSize="24sp" />
+        </LinearLayout>
+    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Максимальное значение:"
-        android:textSize="24sp"
-        android:layout_marginTop="305dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:text="Журнал: Приход/Расход"
+        android:layout_gravity="center|top"
         android:textColor="@color/black"
-        android:layout_gravity="top|center"
-        android:textSize="24sp"
-        android:layout_marginTop="340dp"/>
-
-    <TextView
-        android:id="@+id/kol"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="250sp"
-        android:layout_marginTop="235dp"
-        android:text=""
         android:textSize="24sp" />
-
-    <TextView
-        android:id="@+id/kol0"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textSize="24sp"
-        android:layout_marginStart="250sp"
-        android:layout_marginTop="270dp"/>
-
-    <TextView
-        android:id="@+id/kol1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textSize="24sp"
-        android:layout_marginStart="300sp"
-        android:layout_marginTop="305dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="375dp"
+        android:layout_height="wrap_content"
         tools:listitem="@layout/item" />
 
-</FrameLayout>
+</LinearLayout>

@@ -22,8 +22,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         binding.list.layoutManager = LinearLayoutManager(this)
         productAdapter = ProductAdapter(ArrayList())
-        binding.kol.text = kolProduct.toString()
         binding.list.adapter = productAdapter
+        binding.kol.text = kolProduct.toString()
         binding.kol0.text = startKolProduct.toString()
         binding.kol1.text = (startKolProduct * 4).toString()
 
@@ -57,11 +57,13 @@ class MainActivity : AppCompatActivity() {
                 }
             } else if (kolProduct > (startKolProduct * 4)) {
                 withContext(Dispatchers.Main) {
-                    binding.kol.text = "Закончилось место"
+                    binding.kol.text = "Нехватает места"
+                    cancel()
                 }
             } else if (kolProduct <= 0) {
                 withContext(Dispatchers.Main) {
                     binding.kol.text = "Закончился товар"
+                    cancel()
                 }
             }
         }

@@ -1,5 +1,6 @@
 package com.example.fourthonkotlin
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,10 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 
 class ProductAdapter(private var addDelProduct: ArrayList<String>) : RecyclerView.Adapter<ProductAdapter.UserViewHolder>() {
 
+    @SuppressLint("NotifyDataSetChanged")
     fun addToJournal(product: String) {
         addDelProduct.add(product)
         notifyDataSetChanged()
-        //        notifyItemInserted(users.size() - 1);
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
@@ -21,7 +22,6 @@ class ProductAdapter(private var addDelProduct: ArrayList<String>) : RecyclerVie
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
         holder.products.text = addDelProduct[position];
-//        holder.bind(addDelProduct[position])
     }
 
     override fun getItemCount()= addDelProduct.size
