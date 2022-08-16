@@ -1,1 +1,1 @@
-# myTestProjectForAndroidInJava
+# myTestProjectForAndroidInKotlin
