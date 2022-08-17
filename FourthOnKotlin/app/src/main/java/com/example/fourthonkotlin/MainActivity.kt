@@ -1,6 +1,7 @@
 package com.example.fourthonkotlin
 
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fourthonkotlin.databinding.ActivityMainBinding
@@ -26,6 +27,7 @@ class MainActivity : AppCompatActivity() {
         binding.kol.text = kolProduct.toString()
         binding.kol0.text = startKolProduct.toString()
         binding.kol1.text = (startKolProduct * 4).toString()
+        binding.textView.movementMethod = ScrollingMovementMethod()
 
         GlobalScope.launch {
             while (kolProduct >= 0) {
