@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".BlankFragment"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:text="1. Используюя api сервиса https://alexwohlbruck.github.io/cat-facts/docs/ создать приложение с одним экраном. На экране отобразить 100 фактов о кошках.
+\n-	Вся логика и весь дизайн должен быть описан во фрагменте
+\n-	Для каждого факта необходимо сделать красивую обертку в виде CardView (CardView - это тот же контейнер, что и FrameLayout, только создает красивую тень вокруг view).
+\n-	Приложение должно кешировать данные. Т.е. при первом запуске - загружать данные с сервера, при последующих - с локального хранилища.
+\n\n1.1* Добавить к приложению строку (EditText) для выбора животного, факты о котором должны отображаться (например cat, horse и пр.). Выбранное животное также должно сохранятся и при последующих запусках - отображаться предыдущее выбранное.
+" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="cat, dog or horse" />
+
+        <Button
+            android:id="@+id/ok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ok"/>
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/item" />
+
+</LinearLayout>
