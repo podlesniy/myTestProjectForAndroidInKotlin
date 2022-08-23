@@ -1,5 +1,6 @@
 package com.example.testapp10
 
+import android.content.Context
 import com.example.testapp10.ApiService.getData
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
@@ -8,6 +9,7 @@ import android.os.Bundle
 import android.widget.Toast
 import com.example.testapp10.RequestModel.ExchangeRate
 import android.content.Intent
+import android.content.SharedPreferences
 import android.view.View
 import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -35,6 +37,7 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
         val simpleDateFormat1 = SimpleDateFormat("yyyy")
         val year = simpleDateFormat1.format(Date(System.currentTimeMillis()))
         val yearInt = year.toInt()
+
         changeDate(date)
         button.setOnClickListener(View.OnClickListener {
             if (editText.text.toString() != "" && editText.text

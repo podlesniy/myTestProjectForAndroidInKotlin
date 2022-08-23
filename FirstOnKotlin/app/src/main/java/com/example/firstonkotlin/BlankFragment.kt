@@ -14,8 +14,8 @@ class BlankFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val binding = FragmentBlankBinding.inflate(inflater)
-        calculate(binding.editText1,binding.editText2,binding.textField)
-        calculate(binding.editText2,binding.editText1,binding.textField)
+        calculate(binding.editText1, binding.editText2, binding.textField)
+        calculate(binding.editText2, binding.editText1, binding.textField)
         return binding.root
     }
 
@@ -23,6 +23,7 @@ class BlankFragment : Fragment() {
         editText1.addTextChangedListener {
             val sum = editText1.text.toString().ifEmpty { "0" }.toInt() + (editText2.text.toString().ifEmpty { "0" }.toInt())
             textView.text = sum.toString()
+
         }
     }
 }

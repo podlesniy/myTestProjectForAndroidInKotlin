@@ -30,22 +30,22 @@ class BlankFragment : Fragment() {
         binding.list.layoutManager = LinearLayoutManager(BlankFragment().context)
         preferences = context?.getSharedPreferences("Table", Context.MODE_PRIVATE)
 
-//        for(i in 0..100) {
-//            list?.add(preferences?.getString("$i", null)!!)
-//        }
-//        if (list != null) {
-//            adapter = FactsAdapter(list)
-//            binding.list.adapter = adapter
-//        } else getCatsDate("cat")
-//        binding.ok.setOnClickListener(View.OnClickListener {
-//            when (binding.editText.text.toString()) {
-//                "cat" -> getCatsDate("cat")
-//                "dog" -> getCatsDate("dog")
-//                "horse" -> getCatsDate("horse")
-//                else -> Toast.makeText(context, "Введите какое либо из животных: cat, dog, horse", Toast.LENGTH_SHORT).show()
-//            }
-//        })
-        getCatsDate("cat")
+        for(i in 0..100) {
+            list?.add(preferences?.getString("$i", null)!!)
+        }
+        if (list?.get(0) != null) {
+            adapter = FactsAdapter(list)
+            binding.list.adapter = adapter
+        } else getCatsDate("cat")
+
+        binding.ok.setOnClickListener(View.OnClickListener {
+            when (binding.editText.text.toString()) {
+                "cat" -> getCatsDate("cat")
+                "dog" -> getCatsDate("dog")
+                "horse" -> getCatsDate("horse")
+                else -> Toast.makeText(context, "Введите какое либо из животных: cat, dog, horse", Toast.LENGTH_SHORT).show()
+            }
+        })
         return binding.root
     }
 
@@ -60,7 +60,7 @@ class BlankFragment : Fragment() {
                     }
                     adapter = FactsAdapter(list!!)
                     binding.list.adapter = adapter
-
+                    saveData(list)
                 } else {
                     Toast.makeText(context, "Что-то произошло", Toast.LENGTH_SHORT).show()
                 }
@@ -72,11 +72,10 @@ class BlankFragment : Fragment() {
         })
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    fun saveData(list: ArrayList<String>) {
         val editor = preferences?.edit()
         for (i in 0..100) {
-            editor?.putString("$i", list?.get(i))
+            editor?.putString("$i", list[i])
         }
         editor?.apply()
     }
