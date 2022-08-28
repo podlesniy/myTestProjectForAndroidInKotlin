@@ -16,6 +16,7 @@ class CountryAdapter (
     private val countries: List<ExchangeRate>,
     private val listener: OnItemClickListener
 ) : RecyclerView.Adapter<CountryViewHolder>() {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CountryViewHolder {
         val v = LayoutInflater.from(context).inflate(R.layout.item, parent, false)
         return CountryViewHolder(v, listener)

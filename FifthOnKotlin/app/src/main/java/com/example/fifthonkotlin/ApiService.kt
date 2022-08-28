@@ -1,15 +1,11 @@
 package com.example.fifthonkotlin
 
-import android.database.Observable
-import io.reactivex.disposables.Disposable
-import io.reactivex.internal.operators.observable.ObservableElementAt
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
-import retrofit2.http.Path
 import retrofit2.http.Query
 
 object ApiService {

@@ -21,7 +21,7 @@ class BlankFragment : Fragment() {
 
     lateinit var binding: FragmentBlankBinding
     lateinit var adapter: FactsAdapter
-    val list: ArrayList<String>? = null
+    val list: ArrayList<String> = ArrayList()
     private var preferences: SharedPreferences? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -29,14 +29,15 @@ class BlankFragment : Fragment() {
         binding.textView.movementMethod = ScrollingMovementMethod()
         binding.list.layoutManager = LinearLayoutManager(BlankFragment().context)
         preferences = context?.getSharedPreferences("Table", Context.MODE_PRIVATE)
-
-        for(i in 0..100) {
-            list?.add(preferences?.getString("$i", null)!!)
-        }
-        if (list?.get(0) != null) {
+        if (preferences!!.getString("0", null) != null) {
+            for (i in 0 until preferences!!.getInt("size", 0)) {
+                list.add(preferences!!.getString("$i", null)!!)
+            }
+            binding.list.layoutManager = LinearLayoutManager(context)
             adapter = FactsAdapter(list)
             binding.list.adapter = adapter
-        } else getCatsDate("cat")
+        } else
+            getCatsDate("cat")
 
         binding.ok.setOnClickListener(View.OnClickListener {
             when (binding.editText.text.toString()) {
@@ -54,11 +55,11 @@ class BlankFragment : Fragment() {
             override fun onResponse(call: Call<List<FactModel>?>, response: Response<List<FactModel>?>) {
                 if (response.isSuccessful && response.body() != null) {
                     binding.list.layoutManager = LinearLayoutManager(BlankFragment().context)
-
+                    list.clear()
                     for (i in 0 until response.body()!!.size) {
-                        list!!.add("${i + 1}. " + response.body()!![i].text!!)
+                        list.add("${i + 1}. " + response.body()!![i].text!!)
                     }
-                    adapter = FactsAdapter(list!!)
+                    adapter = FactsAdapter(list)
                     binding.list.adapter = adapter
                     saveData(list)
                 } else {
@@ -73,10 +74,9 @@ class BlankFragment : Fragment() {
     }
 
     fun saveData(list: ArrayList<String>) {
-        val editor = preferences?.edit()
-        for (i in 0..100) {
-            editor?.putString("$i", list[i])
+        for (i in 0 until list.size) {
+            preferences!!.edit().putString("$i", list[i]).apply()
         }
-        editor?.apply()
+        preferences!!.edit().putInt("size", list.size).apply()
     }
 }
