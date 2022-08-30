@@ -1,84 +1,104 @@
 package com.example.sixthapp
 
-import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sixthapp.databinding.ActivityMainBinding
+import com.example.sixthapp.db.CocktailDao
 import com.example.sixthapp.db.CocktailModel
 import com.example.sixthapp.network.ApiService
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
+import kotlin.collections.ArrayList
 
 
 class MainActivity : AppCompatActivity(), OnItemClickListener {
 
+    private var disposable: Disposable? = null
     var adapter: CocktailAdapter? = null
-    private var preferences: SharedPreferences? = null
-    private var preferences1: SharedPreferences? = null
-    var list: ArrayList<String> = ArrayList()
+    var listCocktail: ArrayList<CocktailModel.Drinks> = ArrayList()
+    var listCocktail1: List<CocktailModel.Drinks> = ArrayList()
     var binding: ActivityMainBinding? = null
-    var image: ArrayList<String> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-//        val dao = (application as App).db.getBookDao()
 
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding!!.root)
-        preferences = getSharedPreferences("TableFirst", Context.MODE_PRIVATE)
-        preferences1 = getSharedPreferences("TableSecond", Context.MODE_PRIVATE)
-        if (preferences!!.getString("0", null) != null) {
-            for (i in 0 until preferences!!.getInt("size", 0)) {
-                list.add(preferences!!.getString("$i", null)!!)
-                image.add(preferences1!!.getString("$i", null)!!)
-            }
+        binding!!.text1.movementMethod = ScrollingMovementMethod()
+
+        val dao = (application as App).db.getCocktailDao()
+        if(dao.selectAll().isNotEmpty()) {
+            listCocktail1 = dao.selectAll()
             binding!!.list.layoutManager = LinearLayoutManager(this@MainActivity)
-            adapter = CocktailAdapter(this@MainActivity, list, image,this@MainActivity)
+            adapter = CocktailAdapter(this@MainActivity, listCocktail1, this@MainActivity)
             binding!!.list.adapter = adapter
-        } else
-            getApi()
+        } else getApi(dao)
     }
-
-    private fun getApi() {
-        ApiService.getDataCocktail().enqueue(object : Callback<CocktailModel?> {
-            override fun onResponse(
-                call: Call<CocktailModel?>,
-                response: Response<CocktailModel?>
-            ) {
-                if (response.isSuccessful && response.body() != null) {
-                    binding!!.list.layoutManager = LinearLayoutManager(this@MainActivity)
-                    for (i in 0 until response.body()!!.drinks!!.size) {
-                        list.add(response.body()!!.drinks!![i].strDrink!!)
-                        image.add(response.body()!!.drinks!![i].strDrinkThumb!!)
-                    }
-                    adapter = CocktailAdapter(this@MainActivity, list, image,this@MainActivity)
-                    binding!!.list.adapter = adapter
-                    saveData(list, image)
-                } else {
-                    Toast.makeText(this@MainActivity, "Что-то произошло", Toast.LENGTH_SHORT).show()
+    private fun getApi(dao: CocktailDao) {
+        disposable = ApiService
+            .getDataCocktail()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                for (i in it.drinks!!) {
+                    listCocktail.add(i)
+                    dao.insert(CocktailModel.Drinks(i.idDrink,i.strDrink,i.strDrinkThumb))
                 }
+                binding!!.list.layoutManager = LinearLayoutManager(this@MainActivity)
+                adapter = CocktailAdapter(this@MainActivity, listCocktail, this@MainActivity)
+                binding!!.list.adapter = adapter
+            }) {
+                Toast.makeText(this@MainActivity, "Ошибка Api-запроса", Toast.LENGTH_SHORT).show()
             }
 
-            override fun onFailure(call: Call<CocktailModel?>, t: Throwable) {
-                Toast.makeText(this@MainActivity, "Нет ответа", Toast.LENGTH_SHORT).show()
-            }
-        })
+//                                  ~~~~~~~~~~~~~~~~~RetroFit~~~~~~~~~~~~~~~~~~
+//
+//        ApiService.getDataCocktail().enqueue(object : Callback<CocktailModel?> {
+//            override fun onResponse(
+//                call: Call<CocktailModel?>,
+//                response: Response<CocktailModel?>
+//            ) {
+//                if (response.isSuccessful && response.body() != null) {
+//                    binding!!.list.layoutManager = LinearLayoutManager(this@MainActivity)
+//                    for (i in 0 until response.body()!!.drinks!!.size) {
+//                        list.add(response.body()!!.drinks!![i].strDrink!!)
+//                        image.add(response.body()!!.drinks!![i].strDrinkThumb!!)
+//                    }
+//                    adapter = CocktailAdapter(this@MainActivity, list, image,this@MainActivity)
+//                    binding!!.list.adapter = adapter
+//                    saveData(list, image)
+//                } else {
+//                    Toast.makeText(this@MainActivity, "Что-то произошло", Toast.LENGTH_SHORT).show()
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<CocktailModel?>, t: Throwable) {
+//                Toast.makeText(this@MainActivity, "Нет ответа", Toast.LENGTH_SHORT).show()
+//            }
+//        })
     }
 
-    override fun onItemClick(cocktail: String) {
-        TODO("Not yet implemented")
+    override fun onItemClick(drink: String) {
+        cocktail = drink
+        startActivity(Intent(this, MainActivity2::class.java))
     }
 
-    fun saveData(list: ArrayList<String>, image: ArrayList<String>) {
-        for (i in 0 until list.size) {
-            preferences!!.edit().putString("$i", list[i]).apply()
-            preferences1!!.edit().putString("$i", image[i]).apply()
+    override fun onStop() {
+        super.onStop()
+        if (disposable != null) {
+            disposable!!.dispose()
         }
-        preferences!!.edit().putInt("size", list.size).apply()
+    }
+
+    companion object {
+        @JvmField
+        var cocktail: String? = null
     }
 }
 
@@ -114,8 +134,8 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
 //                dao.insert(Book(count.toLong(), "author$count", "name$count", 2005 + count))
 //                count++
 //            }
-////            val list = dao.selectAll()
-////            withContext(Dispatchers.Main) {
-////                Toast.makeText(applicationContext, list.toString(), Toast.LENGTH_SHORT).show()
-////            }
+//            val list = dao.selectAll()
+//            withContext(Dispatchers.Main) {
+//                Toast.makeText(applicationContext, list.toString(), Toast.LENGTH_SHORT).show()
+//            }
 //        }

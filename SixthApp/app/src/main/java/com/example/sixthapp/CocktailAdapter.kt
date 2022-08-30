@@ -8,15 +8,16 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sixthapp.CocktailAdapter.CocktailViewHolder
+import com.example.sixthapp.db.CocktailModel
 import com.squareup.picasso.Picasso
 
 
 class CocktailAdapter(
     private var context: Context,
-    private val cocktails: ArrayList<String>,
-    private val cocktailImage: ArrayList<String>,
+    private val listCocktail: List<CocktailModel.Drinks>,
     private var listener: OnItemClickListener
 ) : RecyclerView.Adapter<CocktailViewHolder>() {
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CocktailViewHolder {
         val v = LayoutInflater.from(context).inflate(R.layout.item, parent, false)
@@ -24,12 +25,12 @@ class CocktailAdapter(
     }
 
     override fun onBindViewHolder(holder: CocktailViewHolder, position: Int) {
-        val drinks: String = cocktails[position]
-        holder.bind(drinks, cocktailImage[position], context, position)
+        val drinksInfo: CocktailModel.Drinks = listCocktail[position]
+        holder.bind(drinksInfo, context, position)
     }
 
     override fun getItemCount(): Int {
-        return cocktails.size
+        return listCocktail.size
     }
 
     class CocktailViewHolder(itemView: View, private val listener: OnItemClickListener) :
@@ -38,12 +39,13 @@ class CocktailAdapter(
         private val root: View = itemView.findViewById(R.id.root)
         private val image: ImageView = itemView.findViewById(R.id.item_image)
 
-        fun bind(cocktails: String, cocktailImage: String?, context: Context, position: Int) {
+
+        fun bind(cocktails: CocktailModel.Drinks, context: Context, position: Int) {
             Picasso.with(context)
-                .load(cocktailImage)
+                .load(cocktails.strDrinkThumb)
                 .into(image)
-            cock.text = "${position + 1}. " + cocktails
-            root.setOnClickListener { listener.onItemClick(cocktails) }
+            cock.text = "${position + 1}. " + cocktails.strDrink
+            root.setOnClickListener { listener.onItemClick(cocktails.idDrink!!) }
         }
     }
 }

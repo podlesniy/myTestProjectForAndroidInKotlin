@@ -1,6 +1,7 @@
 package com.example.sixthapp.network
 
 import com.example.sixthapp.db.CocktailModel
+import com.example.sixthapp.db.CocktailModelInfo
 import io.reactivex.Flowable
 import io.reactivex.Observable
 import okhttp3.OkHttpClient
@@ -10,6 +11,7 @@ import retrofit2.Retrofit
 import retrofit2.http.GET
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Query
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 
 object ApiService {
 
@@ -20,12 +22,12 @@ object ApiService {
         @GET("filter.php")
         fun getCocktail(
             @Query("a") type: String?
-        ): Call<CocktailModel>
+        ): Observable<CocktailModel>
 
         @GET("lookup.php")
         fun getCocktailInfo (
-            @Query("i") id: Long?
-        ): Call<CocktailModel>
+            @Query("i") id: String?
+        ): Observable<CocktailModelInfo>
     }
 
     init {
@@ -34,6 +36,7 @@ object ApiService {
         val client =
             OkHttpClient.Builder().addInterceptor(interceptor).build()
         val retrofit = Retrofit.Builder()
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
             .baseUrl(API)
             .client(client)
@@ -41,11 +44,11 @@ object ApiService {
         cocktailApi = retrofit.create(CocktailApi::class.java)
     }
 
-    fun getDataCocktail(): Call<CocktailModel> {
+    fun getDataCocktail(): Observable<CocktailModel> {
         return cocktailApi!!.getCocktail("Alcoholic")
     }
 
-    fun getInfoCocktail(id: Long?): Call<CocktailModel> {
+    fun getInfoCocktail(id: String?): Observable<CocktailModelInfo> {
         return cocktailApi!!.getCocktailInfo(id)
     }
 }

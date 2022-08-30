@@ -9,9 +9,9 @@
     tools:context=".MainActivity">
 
     <TextView
-
+        android:id="@+id/text1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:text="Используя API сервиса https://www.thecocktaildb.com/api.php создать приложение с двумя экранами. На первом отобразить список с названием коктейлей и их фотографией. По клику на любой коктейль открывать второй экран. На втором экране должно быть название коктейля, его фотка и подробное описание.
 Данные должны кешироваться в базе данных, при повторном запуске общий список и ранее просмотренные коктейли должны подгружаться без интернета."
         android:layout_gravity="top" />
