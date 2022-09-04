@@ -1,228 +1,209 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="16dp"
     tools:context=".MainActivity2">
 
     <ImageView
+        android:paddingTop="5dp"
         android:id="@+id/imageFull"
-        android:layout_width="350dp"
-        android:layout_height="350dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="top|center"/>
 
-    <LinearLayout
-        android:layout_marginTop="10dp"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_gravity="center"
+        android:fillViewport="true">
 
-        <TextView
-            android:id="@+id/title"
-            android:text="Title"
-            android:textStyle="bold"
-            android:layout_gravity="center"
-            android:textSize="24sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:id="@+id/name"
-            android:text=""
-            android:layout_gravity="center"
-            android:textSize="24sp"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"/>
+            android:padding="16dp"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/inst"
-            android:text="Instruction"
-            android:textStyle="bold"
-            android:layout_gravity="center"
-            android:textSize="24sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"/>
+            <TextView
+                android:id="@+id/inst"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:text="Instruction"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/info"
-            android:text=""
-            android:layout_gravity="center"
-            android:textSize="24sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"/>
+            <TextView
+                android:id="@+id/info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:text=""
+                android:textSize="24sp" />
 
-        <TextView
-            android:id="@+id/ingr"
-            android:text="Ingredient"
-            android:textStyle="bold"
-            android:layout_gravity="center"
-            android:textSize="24sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"/>
+            <TextView
+                android:id="@+id/ingr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:text="Ingredient"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/ingredient1"
-            android:text=""
-            android:layout_gravity="center"
-            android:textSize="24sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:visibility="gone"/>
+            <TextView
+                android:id="@+id/ingredient1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:text=""
+                android:textSize="24sp"
+                android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/ingredient2"
-            android:text=""
-            android:layout_gravity="center"
-            android:textSize="24sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:visibility="gone"/>
+            <TextView
+                android:id="@+id/ingredient2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:text=""
+                android:textSize="24sp"
+                android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/ingredient3"
-            android:text=""
-            android:layout_gravity="center"
-            android:textSize="24sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:visibility="gone"/>
+            <TextView
+                android:id="@+id/ingredient3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:text=""
+                android:textSize="24sp"
+                android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/ingredient4"
-            android:text=""
-            android:layout_gravity="center"
-            android:textSize="24sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:visibility="gone"/>
+            <TextView
+                android:id="@+id/ingredient4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:text=""
+                android:textSize="24sp"
+                android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/ingredient5"
-            android:text=""
-            android:layout_gravity="center"
-            android:textSize="24sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:visibility="gone"/>
+            <TextView
+                android:id="@+id/ingredient5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:text=""
+                android:textSize="24sp"
+                android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/ingredient6"
-            android:text=""
-            android:layout_gravity="center"
-            android:textSize="24sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:visibility="gone"/>
+            <TextView
+                android:id="@+id/ingredient6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:text=""
+                android:textSize="24sp"
+                android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/ingredient7"
-            android:text=""
-            android:layout_gravity="center"
-            android:textSize="24sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:visibility="gone"/>
+            <TextView
+                android:id="@+id/ingredient7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:text=""
+                android:textSize="24sp"
+                android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/ingredient8"
-            android:text=""
-            android:layout_gravity="center"
-            android:textSize="24sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:visibility="gone"/>
+            <TextView
+                android:id="@+id/ingredient8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:text=""
+                android:textSize="24sp"
+                android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/ingredient9"
-            android:text=""
-            android:layout_gravity="center"
-            android:textSize="24sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:visibility="gone"/>
+            <TextView
+                android:id="@+id/ingredient9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:text=""
+                android:textSize="24sp"
+                android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/ingredient10"
-            android:text=""
-            android:layout_gravity="center"
-            android:textSize="24sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:visibility="gone"/>
+            <TextView
+                android:id="@+id/ingredient10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:text=""
+                android:textSize="24sp"
+                android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/ingredient11"
-            android:text=""
-            android:layout_gravity="center"
-            android:textSize="24sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:visibility="gone"/>
+            <TextView
+                android:id="@+id/ingredient11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:text=""
+                android:textSize="24sp"
+                android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/ingredient12"
-            android:text=""
-            android:layout_gravity="center"
-            android:textSize="24sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:visibility="gone"/>
+            <TextView
+                android:id="@+id/ingredient12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:text=""
+                android:textSize="24sp"
+                android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/ingredient13"
-            android:text=""
-            android:layout_gravity="center"
-            android:textSize="24sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:visibility="gone"/>
+            <TextView
+                android:id="@+id/ingredient13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:text=""
+                android:textSize="24sp"
+                android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/ingredient14"
-            android:text=""
-            android:layout_gravity="center"
-            android:textSize="24sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:visibility="gone"/>
+            <TextView
+                android:id="@+id/ingredient14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:text=""
+                android:textSize="24sp"
+                android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/ingredient15"
-            android:text=""
-            android:layout_gravity="center"
-            android:textSize="24sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:visibility="gone"/>
+            <TextView
+                android:id="@+id/ingredient15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:text=""
+                android:textSize="24sp"
+                android:visibility="gone" />
 
-
-    </LinearLayout>
-
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
-</ScrollView>

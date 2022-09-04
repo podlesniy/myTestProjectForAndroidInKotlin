@@ -19,11 +19,15 @@ open class MainActivity2 : AppCompatActivity() {
         if (dao.selectAll().isNotEmpty()) {
             for (i in dao.selectAll()) {
                 if (i.idDrink == cocktail ) {
-                    GenerateDataOnSecondActivity().setInfo(i, dao, binding!!, this@MainActivity2)
+                    GenerateDataOnSecondActivity().setInfo(i,
+                        dao,
+                        binding!!,
+                        this@MainActivity2,
+                        supportActionBar)
                 }
             }
-        } else GenerateDataOnSecondActivity().getApi(dao, binding!!, this@MainActivity2)
-        GenerateDataOnSecondActivity().getApi(dao, binding!!, this@MainActivity2)
+        } else GenerateDataOnSecondActivity().getApi(dao, binding!!, this@MainActivity2,supportActionBar)
+        GenerateDataOnSecondActivity().getApi(dao, binding!!, this@MainActivity2, supportActionBar)
     }
 
     companion object {

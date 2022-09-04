@@ -40,7 +40,6 @@ class CocktailModelInfo {
         val strIngredient13: String,
         val strIngredient14: String,
         val strIngredient15: String
-
     )
 }
 

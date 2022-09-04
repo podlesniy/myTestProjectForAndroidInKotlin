@@ -21,6 +21,7 @@ class GenerateDataOnSecondActivity {
         dao: CocktailDao2,
         binding: ActivityMain2Binding,
         applicationContext: Context,
+        supportActionBar: androidx.appcompat.app.ActionBar?,
     ) {
         if (binding.info.text == "") {
              disposable = ApiService.getInfoCocktail(cocktail)
@@ -28,11 +29,10 @@ class GenerateDataOnSecondActivity {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     if (binding.info.text == "") {
-                        setInfo(it.drinks!![0], dao, binding, applicationContext)
+                        setInfo(it.drinks!![0], dao, binding, applicationContext, supportActionBar)
                     }
                 }) {
-                    if (binding.info.text == "") {
-                        binding.title.visibility = View.INVISIBLE
+                    if (binding.ingredient1.text == "") {
                         binding.inst.visibility = View.INVISIBLE
                         binding.ingr.visibility = View.INVISIBLE
                         Toast.makeText(
@@ -49,12 +49,13 @@ class GenerateDataOnSecondActivity {
         drink: CocktailModelInfo.DrinksInfo,
         dao: CocktailDao2,
         binding: ActivityMain2Binding,
-        applicationContext: Context
+        applicationContext: Context,
+        supportActionBar: androidx.appcompat.app.ActionBar?
     ) {
+        supportActionBar!!.title = drink.strDrink
         Picasso.with(applicationContext)
             .load(drink.strDrinkThumb)
             .into(binding.imageFull)
-        binding.name.text = drink.strDrink
         binding.info.text = drink.strInstructions
 
         val stringNull: List<String?> = mutableListOf(drink.strIngredient1,drink.strIngredient2,drink.strIngredient3,drink.strIngredient4,drink.strIngredient5,drink.strIngredient6,drink.strIngredient7,drink.strIngredient8,drink.strIngredient9,drink.strIngredient10,drink.strIngredient11,drink.strIngredient12,drink.strIngredient13,drink.strIngredient14,drink.strIngredient15)

@@ -35,5 +35,5 @@ interface CocktailDao2 {
     fun selectAll(): List<CocktailModelInfo.DrinksInfo>
 
     @Query("SELECT * FROM DrinksInfo WHERE idDrink = :id")
-    fun selectCocktail(id: String): CocktailModelInfo.DrinksInfo
+    fun selectCocktailWithId(id: String): CocktailModelInfo.DrinksInfo
 }
