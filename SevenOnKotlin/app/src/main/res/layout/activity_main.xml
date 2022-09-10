@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:text="1. Вася работает курьером, бегает по утрам, ведёт активный образ жизни. Федя работает программистом и любит в свободное время играть в компьютерные игры. Приложение должно определять образ жизни хозяина девайса. На экране должно быть два цвета: красный и зелёный. Чем активнее образ жизни человека - тем больше зелёного. Можно считать, что для Васи должно быть 90% зелёного, для Феди 90% красного."/>
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:id="@+id/pasive"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="30sp"
+        android:gravity="center"
+        android:background="#F44336" />
+
+    <TextView
+        android:id="@+id/active"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="30sp"
+        android:background="#69F436"
+        android:gravity="center" />
+
+</LinearLayout>
