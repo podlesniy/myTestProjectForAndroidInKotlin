@@ -54,9 +54,9 @@ class MainActivity : AppCompatActivity() {
             var z = list[2].toDouble()
             for (i in listOfXYZ) {
                 list = i.split(",")
-                if (round(x) in round(list[0].toDouble())..round(list[0].toDouble() + 1)
-                    && round(y) in round(list[1].toDouble())..round(list[1].toDouble() + 1)
-                    && round(z) in round(list[2].toDouble())..round(list[2].toDouble() + 1)
+                if (round(x) in round(list[0].toDouble() - 1)..round(list[0].toDouble() + 1)
+                    && round(y) in round(list[1].toDouble() - 1)..round(list[1].toDouble() + 1)
+                    && round(z) in round(list[2].toDouble() - 1)..round(list[2].toDouble() + 1)
                 ) {
                     pas++
 
